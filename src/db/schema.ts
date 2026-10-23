@@ -2,7 +2,10 @@ import { pgTable, serial, text, integer, real, timestamp, jsonb, uniqueIndex } f
 
 export type MacroTotals = { calories: number; protein: number; carbs: number; fat: number; fiber: number };
 export type ParsedFood = { name: string; quantity: number; unit: string; totals: MacroTotals };
-export type ExerciseLog = { name: string; sets: number; reps: string; weight: string; completed: boolean };
+export type ExerciseLog = {
+  name: string; sets: number; reps: string; weight: string; completed: boolean;
+  slot?: string; muscle?: string; setsDone?: number; // added for set-by-set logging (stored in JSONB, no migration needed)
+};
 export type ProgressPhotos = { front?: string; side?: string; back?: string };
 
 // .enableRLS() turns on Row Level Security: Supabase's public API is blocked, while the app
